@@ -2,1435 +2,778 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postcard EPIC Marketing India</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #e63946;
-            --secondary: #457b9d;
-            --accent: #a8dadc;
-            --background: #f1faee;
-            --text: #1d3557;
-            --card-bg: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --header-bg: #ffffff;
-            --footer-bg: #1d3557;
-            --footer-text: #f1faee;
-        }
-
-        .dark-mode {
-            --primary: #ff6b6b;
-            --secondary: #4ecdc4;
-            --accent: #4ecdc4;
-            --background: #1a1a2e;
-            --text: #f1faee;
-            --card-bg: #16213e;
-            --shadow: rgba(255, 255, 255, 0.1);
-            --header-bg: #16213e;
-            --footer-bg: #0f3460;
-            --footer-text: #f1faee;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s, opacity 0.3s;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: var(--header-bg);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px var(--shadow);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 1rem;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            background-color: var(--primary);
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text);
-            margin-left: 1rem;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text);
-            cursor: pointer;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-        }
-
-        .hero-quote {
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-top: 2rem;
-            color: var(--secondary);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .about-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .about-image {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-
-        .about-image img {
-            width: 100%;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .services {
-            background-color: var(--card-bg);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background-color: var(--background);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px var(--shadow);
-        }
-
-        .service-card-icon {
-            background-color: var(--primary);
-            color: white;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-        }
-
-        .service-card-content {
-            padding: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .service-card p {
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .process {
-            background-color: var(--background);
-        }
-
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            flex-wrap: wrap;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 100px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent);
-            z-index: 0;
-        }
-
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 150px;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 2rem;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .process-step:hover .step-number {
-            transform: scale(1.1);
-        }
-
-        .step-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .step-description {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: var(--text);
-        }
-
-        .clients {
-            background-color: var(--card-bg);
-        }
-
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .client-logo {
-            background-color: var(--background);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 150px;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .client-logo:hover {
-            transform: translateY(-10px);
-        }
-
-        .client-logo img {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
-        }
-
-        .digital-services {
-            background-color: var(--background);
-            padding: 4rem 2rem;
-        }
-
-        .digital-services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .digital-services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .digital-service-item {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .digital-service-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .digital-service-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .digital-service-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .contact {
-            background-color: var(--card-bg);
-        }
-
-        .contact-container {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .contact-details {
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item i {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            flex: 1;
-            background-color: var(--background);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px var(--shadow);
-        }
-
-        .contact-form h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-            color: var(--text);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 3rem 2rem;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-col {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 2rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--footer-text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--footer-text);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .pulse-animation {
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 1s forwards;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .about-content {
-                flex-direction: column;
-            }
-
-            .process-steps::before {
-                display: none;
-            }
-
-            .process-steps {
-                justify-content: center;
-                gap: 2rem;
-            }
-
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--header-bg);
-                padding: 1rem;
-                flex-direction: column;
-                box-shadow: 0 5px 15px var(--shadow);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 99;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Animated shapes */
-        .shape {
-            position: absolute;
-            z-index: -1;
-            opacity: 0.2;
-        }
-
-        .shape-1 {
-            top: 20%;
-            left: 10%;
-            width: 100px;
-            height: 100px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            animation: float 7s ease-in-out infinite;
-        }
-
-        .shape-2 {
-            top: 50%;
-            right: 5%;
-            width: 150px;
-            height: 150px;
-            background-color: var(--secondary);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: float 10s ease-in-out infinite, rotate 20s linear infinite;
-        }
-
-        .shape-3 {
-            bottom: 10%;
-            left: 20%;
-            width: 80px;
-            height: 80px;
-            background-color: var(--accent);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: float 8s ease-in-out infinite, rotate 16s linear infinite reverse;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Team section */
-        .team {
-            background-color: var(--background);
-        }
-
-        .team-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-member {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-
-        .team-member img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .team-member-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .team-member-name {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-member-role {
-            font-size: 1rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .team-member-description {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* Clients section */
-        .projects {
-            background-color: var(--card-bg);
-        }
-
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--background);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-card-content {
-            padding: 1.5rem;
-        }
-
-        .project-card-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-card-description {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcard EPIC Marketing India</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">Postcard<span>EPIC</span></a>
-        <nav>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#process">Process</a>
-                <a href="#team">Team</a>
-                <a href="#clients">Clients</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-        <button class="theme-toggle">
-            <i class="fas fa-moon"></i>
+<body class="light-mode">
+  <!-- Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="loader">
+      <svg viewBox="0 0 80 80">
+        <circle id="loader-circle" cx="40" cy="40" r="32"></circle>
+      </svg>
+      <div class="loader-text">POSTCARD<span>EPIC</span></div>
+    </div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        Postcard<span>EPIC</span>
+        <div class="logo-shine"></div>
+      </a>
+      <nav>
+        <div class="nav-links">
+          <a href="#about" class="nav-link"><span>01</span>About</a>
+          <a href="#services" class="nav-link"><span>02</span>Services</a>
+          <a href="#process" class="nav-link"><span>03</span>Process</a>
+          <a href="#team" class="nav-link"><span>04</span>Team</a>
+          <a href="#clients" class="nav-link"><span>05</span>Clients</a>
+          <a href="#contact" class="nav-link"><span>06</span>Contact</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
-    </header>
+      </nav>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="hero-content fade-in-up">
-            <h1>Welcome to <span style="color: var(--primary);">Postcard EPIC</span> Marketing India</h1>
-            <p>We don't just tell your story; we show your consumers how your brand blends perfectly in their story.</p>
-            <div>
-                <a href="#services" class="btn">Our Services</a>
-                <a href="#contact" class="btn btn-outline">Get in Touch</a>
-            </div>
-            <div class="hero-quote">
-                "Creative without strategy is called Art, Creative with strategy is called Advertising" - Jef Richards
-            </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-container">
+      <div class="mobile-menu-header">
+        <a href="#" class="logo">Postcard<span>EPIC</span></a>
+        <button class="mobile-menu-close" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#process" class="mobile-nav-link">Process</a>
+        <a href="#team" class="mobile-nav-link">Team</a>
+        <a href="#clients" class="mobile-nav-link">Clients</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+      </div>
+      <div class="mobile-menu-footer">
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h1 class="reveal-text">
+          <span class="line">Welcome to</span>
+          <span class="line"><span class="highlight">Postcard EPIC</span></span>
+          <span class="line">Marketing India</span>
+        </h1>
+        <p class="hero-description reveal-text-delay">
+          We don't just tell your story; we show your consumers how your brand blends perfectly in their story.
+        </p>
+        <div class="hero-buttons reveal-text-delay">
+          <a href="#services" class="btn btn-primary">
+            <span>Our Services</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <span>Get in Touch</span>
+          </a>
+        </div>
+        <div class="hero-quote reveal-text-delay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+          </svg>
+          <p>Creative without strategy is called Art, Creative with strategy is called Advertising</p>
+          <span>- Jef Richards</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-container">
+          <img src="/placeholder.svg?height=600&width=600" alt="Marketing Concept" class="floating">
+          <div class="hero-image-shape"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Who We Are</span>
         <h2 class="section-title">About Us</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Who We Are</h3>
-                <p>Postcard is one of the oldest medium to communicate. However, the nature of postcard has evolved with
-                    time. We, here in Postcard & Epic Marketing India think, postcard was never dead, it has only
-                    evolved.</p>
-                <p>What does a modern postcard serve? It gives instant results and works with all channels. It is
-                    efficient, flexible and cost effective. And we resonate with each values of modern day Postcard.</p>
-                <h3>Our Philosophy</h3>
-                <p>We don't just tell your story; we show your consumers how we blend perfectly in their story. Engage
-                    and demonstrate them on how your brand can add value to their day to day lives.</p>
-                <h3>Our Approach</h3>
-                <p>Developing campaigns by Thinking like a Consumer, entering their Mindset and building Creative
-                    Insightful Campaigns that will create a long lasting impression.</p>
-                <h3>Our Aim</h3>
-                <p>Insightful Campaigns are more relatable and need no introduction hence it results into higher brand
-                    recall value. If your campaign did not spark strong emotions then the communication has left no
-                    impact in their minds.</p>
-            </div>
-            <div class="about-image">
-                <img src="/api/placeholder/600/400" alt="Postcard EPIC Marketing Team">
-            </div>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <div class="about-text-item">
+            <h3>Our Story</h3>
+            <p>Postcard is one of the oldest medium to communicate. However, the nature of postcard has evolved with time. We, here in Postcard & Epic Marketing India think, postcard was never dead, it has only evolved.</p>
+            <p>What does a modern postcard serve? It gives instant results and works with all channels. It is efficient, flexible and cost effective. And we resonate with each values of modern day Postcard.</p>
+          </div>
+          <div class="about-text-item">
+            <h3>Our Philosophy</h3>
+            <p>We don't just tell your story; we show your consumers how we blend perfectly in their story. Engage and demonstrate them on how your brand can add value to their day to day lives.</p>
+          </div>
+          <div class="about-text-item">
+            <h3>Our Approach</h3>
+            <p>Developing campaigns by Thinking like a Consumer, entering their Mindset and building Creative Insightful Campaigns that will create a long lasting impression.</p>
+          </div>
+          <div class="about-text-item">
+            <h3>Our Aim</h3>
+            <p>Insightful Campaigns are more relatable and need no introduction hence it results into higher brand recall value. If your campaign did not spark strong emotions then the communication has left no impact in their minds.</p>
+          </div>
         </div>
-    </section>
+        <div class="about-image">
+          <div class="about-image-container">
+            <img src="/placeholder.svg?height=600&width=600" alt="Postcard EPIC Marketing Team">
+            <div class="about-image-shape"></div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-text">Years Experience</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">200+</span>
+              <span class="stat-text">Projects Completed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">50+</span>
+              <span class="stat-text">Happy Clients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+  <!-- Services Section -->
+  <section id="services" class="services section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">What We Do</span>
         <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-card-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="service-card-content">
-                    <h3>Research</h3>
-                    <p>We don't do research to make Files, We do it to drive the brand reach Miles. Our research helps
-                        understand what makes consumers buy some products and not others.</p>
-                    <ul>
-                        <li>Product Analysis</li>
-                        <li>Competition Analysis</li>
-                        <li>Market Trends</li>
-                        <li>Consumer Behavior</li>
-                        <li>Pricing & Purchase Analysis</li>
-                        <li>Identify Insights</li>
-                        <li>Media Allocation</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <div class="service-card-content">
-                    <h3>Strategy</h3>
-                    <p>Today in the digital age, you don't need just a Business Strategy, you need a Digital Strategy
-                        too. Our strategy is simple - Streamline Consumer's Options.</p>
-                    <ul>
-                        <li>Marketing Strategy</li>
-                        <li>Advertising Strategy</li>
-                        <li>Digital Strategy</li>
-                        <li>Media Planning</li>
-                        <li>ROI Based Marketing</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <div class="service-card-content">
-                    <h3>Design</h3>
-                    <p>If you think good Design is Expensive, you should look at the cost of Bad Design. We develop
-                        unique identity for brands with iconic designs.</p>
-                    <ul>
-                        <li>Brand Identity</li>
-                        <li>Packaging</li>
-                        <li>Design Ads</li>
-                        <li>Brochure Design</li>
-                        <li>Marketing Collaterals</li>
-                        <li>Website Design</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-card-icon">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <div class="service-card-content">
-                    <h3>Communication</h3>
-                    <p>Advertising is a recipe and communication is very important ingredient. We humanise the brand and
-                        let you become a part of the conversation naturally.</p>
-                    <ul>
-                        <li>Print Media</li>
-                        <li>Outdoor</li>
-                        <li>TV & Radio</li>
-                        <li>Digital Campaigns</li>
-                        <li>Events/BTL</li>
-                        <li>PR Management</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up">
+          <div class="service-card-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="service-card-content">
+            <h3>Research</h3>
+            <p>We don't do research to make Files, We do it to drive the brand reach Miles. Our research helps understand what makes consumers buy some products and not others.</p>
+            <ul>
+              <li>Product Analysis</li>
+              <li>Competition Analysis</li>
+              <li>Market Trends</li>
+              <li>Consumer Behavior</li>
+              <li>Pricing & Purchase Analysis</li>
+              <li>Identify Insights</li>
+              <li>Media Allocation</li>
+            </ul>
+            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-    </section>
-
-    <!-- Digital Services Section -->
-    <div class="digital-services-grid">
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-globe"></i>
-            </div>
-            <h3 class="digital-service-title">Web Development</h3>
-            <p>Custom website development tailored to your brand's unique needs with responsive design for all devices.
-            </p>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="service-card-content">
+            <h3>Strategy</h3>
+            <p>Today in the digital age, you don't need just a Business Strategy, you need a Digital Strategy too. Our strategy is simple - Streamline Consumer's Options.</p>
+            <ul>
+              <li>Marketing Strategy</li>
+              <li>Advertising Strategy</li>
+              <li>Digital Strategy</li>
+              <li>Media Planning</li>
+              <li>ROI Based Marketing</li>
+            </ul>
+            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-hashtag"></i>
-            </div>
-            <h3 class="digital-service-title">Social Media Marketing</h3>
-            <p>Strategic social media campaigns to build engagement and create lasting connections with your audience.
-            </p>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <div class="service-card-content">
+            <h3>Design</h3>
+            <p>If you think good Design is Expensive, you should look at the cost of Bad Design. We develop unique identity for brands with iconic designs.</p>
+            <ul>
+              <li>Brand Identity</li>
+              <li>Packaging</li>
+              <li>Design Ads</li>
+              <li>Brochure Design</li>
+              <li>Marketing Collaterals</li>
+              <li>Website Design</li>
+            </ul>
+            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-search-dollar"></i>
-            </div>
-            <h3 class="digital-service-title">SEO & SEM</h3>
-            <p>Improve your online visibility through comprehensive search engine optimization and marketing strategies.
-            </p>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <div class="service-card-content">
+            <h3>Communication</h3>
+            <p>Advertising is a recipe and communication is very important ingredient. We humanise the brand and let you become a part of the conversation naturally.</p>
+            <ul>
+              <li>Print Media</li>
+              <li>Outdoor</li>
+              <li>TV & Radio</li>
+              <li>Digital Campaigns</li>
+              <li>Events/BTL</li>
+              <li>PR Management</li>
+            </ul>
+            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <h3 class="digital-service-title">Email Marketing</h3>
-            <p>Targeted email campaigns that nurture leads and maintain customer relationships with personalized
-                content.</p>
-        </div>
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <h3 class="digital-service-title">Analytics & Reporting</h3>
-            <p>Data-driven insights that help optimize your marketing strategy and maximize ROI.</p>
-        </div>
-        <div class="digital-service-item">
-            <div class="digital-service-icon">
-                <i class="fas fa-ad"></i>
-            </div>
-            <h3 class="digital-service-title">Digital Advertising</h3>
-            <p>Effective paid campaigns across multiple platforms to drive traffic and increase conversions.</p>
-        </div>
+      </div>
     </div>
-    </div>
-    </section>
+  </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process">
+  <!-- Digital Services Section -->
+  <section class="digital-services section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Digital Expertise</span>
+        <h2 class="section-title">Digital Services</h2>
+      </div>
+      <div class="digital-services-grid">
+        <div class="digital-service-item" data-aos="zoom-in">
+          <div class="digital-service-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="digital-service-title">Web Development</h3>
+          <p>Custom website development tailored to your brand's unique needs with responsive design for all devices.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+        <div class="digital-service-item" data-aos="zoom-in" data-aos-delay="100">
+          <div class="digital-service-icon">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <h3 class="digital-service-title">Social Media Marketing</h3>
+          <p>Strategic social media campaigns to build engagement and create lasting connections with your audience.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+        <div class="digital-service-item" data-aos="zoom-in" data-aos-delay="200">
+          <div class="digital-service-icon">
+            <i class="fas fa-search-dollar"></i>
+          </div>
+          <h3 class="digital-service-title">SEO & SEM</h3>
+          <p>Improve your online visibility through comprehensive search engine optimization and marketing strategies.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+        <div class="digital-service-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="digital-service-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="digital-service-title">Email Marketing</h3>
+          <p>Targeted email campaigns that nurture leads and maintain customer relationships with personalized content.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+        <div class="digital-service-item" data-aos="zoom-in" data-aos-delay="400">
+          <div class="digital-service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="digital-service-title">Analytics & Reporting</h3>
+          <p>Data-driven insights that help optimize your marketing strategy and maximize ROI.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+        <div class="digital-service-item" data-aos="zoom-in" data-aos-delay="500">
+          <div class="digital-service-icon">
+            <i class="fas fa-ad"></i>
+          </div>
+          <h3 class="digital-service-title">Digital Advertising</h3>
+          <p>Effective paid campaigns across multiple platforms to drive traffic and increase conversions.</p>
+          <a href="#" class="digital-service-link">
+            <span>Explore</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="process section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">How We Work</span>
         <h2 class="section-title">Our Process</h2>
+      </div>
+      <div class="process-timeline">
+        <div class="process-line"></div>
         <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3 class="step-title">Discovery</h3>
-                <p class="step-description">Understanding your business, goals, audience, and competitors.</p>
+          <div class="process-step" data-aos="fade-right">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3 class="step-title">Discovery</h3>
+              <p class="step-description">Understanding your business, goals, audience, and competitors.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3 class="step-title">Strategy</h3>
-                <p class="step-description">Developing a comprehensive plan to achieve your objectives.</p>
+          </div>
+          <div class="process-step" data-aos="fade-left">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3 class="step-title">Strategy</h3>
+              <p class="step-description">Developing a comprehensive plan to achieve your objectives.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3 class="step-title">Creation</h3>
-                <p class="step-description">Designing and producing compelling creative assets.</p>
+          </div>
+          <div class="process-step" data-aos="fade-right">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3 class="step-title">Creation</h3>
+              <p class="step-description">Designing and producing compelling creative assets.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3 class="step-title">Implementation</h3>
-                <p class="step-description">Executing the strategy across all chosen channels.</p>
+          </div>
+          <div class="process-step" data-aos="fade-left">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3 class="step-title">Implementation</h3>
+              <p class="step-description">Executing the strategy across all chosen channels.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <h3 class="step-title">Analysis</h3>
-                <p class="step-description">Measuring results and optimizing for better performance.</p>
+          </div>
+          <div class="process-step" data-aos="fade-right">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <h3 class="step-title">Analysis</h3>
+              <p class="step-description">Measuring results and optimizing for better performance.</p>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Team Section -->
-    <section id="team" class="team">
+  <!-- Team Section -->
+  <section id="team" class="team section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Meet Our Experts</span>
         <h2 class="section-title">Our Team</h2>
-        <div class="team-container">
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="/api/placeholder/400/400" alt="Team Member">
-                    <div class="team-member-info">
-                        <h3 class="team-member-name">Raj Sharma</h3>
-                        <p class="team-member-role">Founder & CEO</p>
-                        <p class="team-member-description">With over 15 years of experience in marketing and
-                            advertising, Raj leads our team with vision and creativity.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="/api/placeholder/400/400" alt="Team Member">
-                    <div class="team-member-info">
-                        <h3 class="team-member-name">Priya Patel</h3>
-                        <p class="team-member-role">Creative Director</p>
-                        <p class="team-member-description">Priya brings artistic excellence and innovative thinking to
-                            every project we undertake.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="/api/placeholder/400/400" alt="Team Member">
-                    <div class="team-member-info">
-                        <h3 class="team-member-name">Vikram Singh</h3>
-                        <p class="team-member-role">Digital Strategist</p>
-                        <p class="team-member-description">Vikram specializes in crafting digital strategies that drive
-                            engagement and conversions.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="/api/placeholder/400/400" alt="Team Member">
-                    <div class="team-member-info">
-                        <h3 class="team-member-name">Ananya Gupta</h3>
-                        <p class="team-member-role">Client Relations Manager</p>
-                        <p class="team-member-description">Ananya ensures our clients receive exceptional service and
-                            results that exceed expectations.</p>
-                    </div>
-                </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-member" data-aos="fade-up">
+          <div class="team-member-image">
+            <img src="/placeholder.svg?height=400&width=400" alt="Raj Sharma">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
+          </div>
+          <div class="team-member-info">
+            <h3 class="team-member-name">Raj Sharma</h3>
+            <p class="team-member-role">Founder & CEO</p>
+            <p class="team-member-description">With over 15 years of experience in marketing and advertising, Raj leads our team with vision and creativity.</p>
+          </div>
         </div>
-    </section>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-member-image">
+            <img src="/placeholder.svg?height=400&width=400" alt="Priya Patel">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h3 class="team-member-name">Priya Patel</h3>
+            <p class="team-member-role">Creative Director</p>
+            <p class="team-member-description">Priya brings artistic excellence and innovative thinking to every project we undertake.</p>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-member-image">
+            <img src="/placeholder.svg?height=400&width=400" alt="Vikram Singh">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h3 class="team-member-name">Vikram Singh</h3>
+            <p class="team-member-role">Digital Strategist</p>
+            <p class="team-member-description">Vikram specializes in crafting digital strategies that drive engagement and conversions.</p>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-member-image">
+            <img src="/placeholder.svg?height=400&width=400" alt="Ananya Gupta">
+            <div class="team-member-social">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="team-member-info">
+            <h3 class="team-member-name">Ananya Gupta</h3>
+            <p class="team-member-role">Client Relations Manager</p>
+            <p class="team-member-description">Ananya ensures our clients receive exceptional service and results that exceed expectations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Clients Section -->
-    <section id="clients" class="clients">
+  <!-- Clients Section -->
+  <section id="clients" class="clients section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Trusted By</span>
         <h2 class="section-title">Our Clients</h2>
-        <div class="clients-grid">
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
-            <div class="client-logo">
-                <img src="/api/placeholder/200/100" alt="Client Logo">
-            </div>
+      </div>
+      <div class="clients-slider">
+        <div class="clients-track">
+          <div class="client-logo" data-aos="zoom-in">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="100">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="200">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="300">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="400">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="500">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
+          <div class="client-logo" data-aos="zoom-in" data-aos-delay="600">
+            <img src="/placeholder.svg?height=100&width=200" alt="Client Logo">
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section class="projects">
-        <h2 class="section-title">Our Projects</h2>
-        <div class="projects-container">
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Project">
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Brand Relaunch Campaign</h3>
-                        <p class="project-card-description">Comprehensive rebranding strategy for a leading FMCG company
-                            that increased market share by 15%.</p>
-                        <a href="#" class="btn">View Case Study</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Project">
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Digital Transformation</h3>
-                        <p class="project-card-description">Complete digital overhaul for a traditional retail brand
-                            resulting in 200% increase in online sales.</p>
-                        <a href="#" class="btn">View Case Study</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Project">
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Product Launch</h3>
-                        <p class="project-card-description">Integrated marketing campaign for a new tech product that
-                            achieved 150% of sales targets.</p>
-                        <a href="#" class="btn">View Case Study</a>
-                    </div>
-                </div>
+  <!-- Projects Section -->
+  <section class="projects section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Our Work</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-card-image">
+            <img src="/placeholder.svg?height=400&width=600" alt="Brand Relaunch Campaign">
+            <div class="project-card-overlay">
+              <a href="#" class="project-card-link">View Case Study</a>
             </div>
+          </div>
+          <div class="project-card-content">
+            <h3 class="project-card-title">Brand Relaunch Campaign</h3>
+            <p class="project-card-description">Comprehensive rebranding strategy for a leading FMCG company that increased market share by 15%.</p>
+            <div class="project-card-tags">
+              <span>Branding</span>
+              <span>Strategy</span>
+              <span>Design</span>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card-image">
+            <img src="/placeholder.svg?height=400&width=600" alt="Digital Transformation">
+            <div class="project-card-overlay">
+              <a href="#" class="project-card-link">View Case Study</a>
+            </div>
+          </div>
+          <div class="project-card-content">
+            <h3 class="project-card-title">Digital Transformation</h3>
+            <p class="project-card-description">Complete digital overhaul for a traditional retail brand resulting in 200% increase in online sales.</p>
+            <div class="project-card-tags">
+              <span>Digital</span>
+              <span>E-commerce</span>
+              <span>UX/UI</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card-image">
+            <img src="/placeholder.svg?height=400&width=600" alt="Product Launch">
+            <div class="project-card-overlay">
+              <a href="#" class="project-card-link">View Case Study</a>
+            </div>
+          </div>
+          <div class="project-card-content">
+            <h3 class="project-card-title">Product Launch</h3>
+            <p class="project-card-description">Integrated marketing campaign for a new tech product that achieved 150% of sales targets.</p>
+            <div class="project-card-tags">
+              <span>Campaign</span>
+              <span>Product</span>
+              <span>Marketing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects-cta">
+        <a href="#" class="btn btn-primary">
+          <span>View All Projects</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+  <!-- Contact Section -->
+  <section id="contact" class="contact section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Get In Touch</span>
         <h2 class="section-title">Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>123 Marketing Street, Mumbai 400001, India</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+91 98765 43210</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@postcardepic.com</p>
-                    </div>
-                </div>
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+          <h3>Let's Talk</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Visit Us</h4>
+                <p>123 Marketing Street, Mumbai 400001, India</p>
+              </div>
             </div>
-            <div class="contact-form">
-                <h3>Send Us a Message</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Call Us</h4>
+                <p>+91 98765 43210</p>
+              </div>
             </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-item-content">
+                <h4>Email Us</h4>
+                <p>info@postcardepic.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-social">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Postcard EPIC</h4>
-                <p>We don't just tell your story; we show your consumers how your brand blends perfectly in their story.
-                </p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#process">Process</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Research</a></li>
-                    <li><a href="#">Strategy</a></li>
-                    <li><a href="#">Design</a></li>
-                    <li><a href="#">Communication</a></li>
-                    <li><a href="#">Digital Marketing</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p>Subscribe to our newsletter for the latest updates.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email Address" required>
-                    </div>
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
-            </div>
+        <div class="contact-form-container" data-aos="fade-left">
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <span>Send Message</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2025 Postcard EPIC Marketing India. All Rights Reserved.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="logo footer-logo">Postcard<span>EPIC</span></a>
+          <p>We don't just tell your story; we show your consumers how your brand blends perfectly in their story.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
-    </footer>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#clients">Clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Strategy</a></li>
+            <li><a href="#">Design</a></li>
+            <li><a href="#">Communication</a></li>
+            <li><a href="#">Digital Marketing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>Subscribe to our newsletter for the latest updates.</p>
+          <form class="footer-newsletter">
+            <div class="form-group">
+              <input type="email" placeholder="Your Email Address" required>
+              <button type="submit" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Postcard EPIC Marketing India. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </a>
 
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Theme Toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-
-        // Back to Top Button
-        const backToTopBtn = document.querySelector('.back-to-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // Animation on Scroll
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.service-card, .digital-service-item, .team-member, .project-card, .process-step');
-
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-
-                if (elementPosition < screenPosition) {
-                    element.classList.add('fade-in-up');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
-    </script>
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
